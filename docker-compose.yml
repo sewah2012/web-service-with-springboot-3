@@ -1,0 +1,13 @@
+version: v1
+
+services:
+  recipe-postgres:
+    image: "postgres:14.4"
+    container_name: "recipe-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

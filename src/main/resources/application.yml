@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: recipe-service
+  sql:
+    init:
+      mode: always
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/recipe_db
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5

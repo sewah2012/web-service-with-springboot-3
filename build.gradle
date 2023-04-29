@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'io.undefvar'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('mapstructVersion', "1.5.3.Final")
+	set('lombokVersion', "1.18.20")
+	set('lombokMapstructBindingVersion', "0.2.0")
+}
+
+dependencies {
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	implementation "org.projectlombok:lombok:${lombokVersion}"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+
+	// If you are using mapstruct in test code
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
